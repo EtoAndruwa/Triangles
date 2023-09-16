@@ -8,9 +8,9 @@ point::point() // OK
         std::cout << "POINT common constructor\n";
     #endif
 
-    set_x(NAN);
-    set_y(NAN);
-    set_z(NAN);
+    x = NAN;
+    y = NAN;
+    z = NAN;
 }
 
 point::point(const coords_type& x, const coords_type& y, const coords_type& z) // OK
@@ -19,9 +19,9 @@ point::point(const coords_type& x, const coords_type& y, const coords_type& z) /
         std::cout << "POINT constructor\n";
     #endif
 
-    set_x(x);
-    set_y(y);
-    set_z(z);
+    this->x = x;
+    this->y = y;
+    this->z = z;
 }
 
 point::~point() // OK
@@ -30,24 +30,9 @@ point::~point() // OK
         std::cout << "POINT dectructor\n";
     #endif
 
-    set_x(NAN);
-    set_y(NAN);
-    set_z(NAN);
-}
-
-void point::set_x(const coords_type& x) // Ok
-{
-    this->x = x;
-}
-
-void point::set_y(const coords_type& y) // OK
-{
-    this->y = y;
-}
-
-void point::set_z(const coords_type& z) // OK
-{
-    this->z = z;
+    x = NAN;
+    y = NAN;
+    z = NAN;
 }
 
 const coords_type point::get_x() const // OK
@@ -72,26 +57,23 @@ void point::print_point() // OK
 
 /*###############################################################################################*/
 
-vector::vector() // OK
-{
-    #ifdef DEBUG
-        std::cout << "VECTOR common constructor\n";
-    #endif
-    
-    set_start(NAN, NAN, NAN);
-    set_end(NAN, NAN, NAN);
-    set_module(NAN);
-}
-
 vector::vector(const coords_type& x1, const coords_type& y1, const coords_type& z1, const coords_type& x2, const coords_type& y2, const coords_type& z2) // OK
 {
     #ifdef DEBUG
         std::cout << "VECTOR constructor\n";
     #endif
 
-    set_start(x1, y1, z1);
-    set_end(x2, y2, z2);
-    set_module(NAN);
+    start.x = x1;
+    start.y = y1;
+    start.z = z1;
+
+    end.x = x2;
+    end.y = y2;
+    end.z = z2;
+
+    i = x2 - x1;
+    j = y2 - y1;
+    k = z2 - z1;
 
     calc_module();
 }
@@ -102,31 +84,18 @@ vector::~vector() // OK
         std::cout << "VECTOR dectructor\n";
     #endif
 
-    set_start(NAN, NAN, NAN);
-    set_end(NAN, NAN, NAN);
-    set_module(NAN);
-}
+    start.x = NAN;
+    start.y = NAN;
+    start.z = NAN;
 
-void vector::set_start(const coords_type& x1, const coords_type& y1, const coords_type& z1) // OK
-{
-    #ifdef DEBUG
-        std::cout << "VECTOR start setter\n";
-    #endif
+    end.x = NAN;
+    end.y = NAN;
+    end.z = NAN;
 
-    start.set_x(x1);
-    start.set_y(y1);
-    start.set_z(z1);
-}
-
-void vector::set_end(const coords_type& x2, const coords_type& y2, const coords_type& z2) // OK
-{
-    #ifdef DEBUG
-        std::cout << "VECTOR end setter\n";
-    #endif
-
-    end.set_x(x2);
-    end.set_y(y2);
-    end.set_z(z2);
+    i = NAN;
+    j = NAN;
+    k = NAN;
+    module = NAN;
 }
 
 void vector::print_vector() // OK
@@ -158,46 +127,41 @@ void vector::get_end(coords_type& x2, coords_type& y2, coords_type& z2) const// 
     z2 = end.get_z();
 }
 
-void vector::set_module(const double& module_val) // OK
-{
-    #ifdef DEBUG
-        std::cout << "VECTOR module get_ter\n";
-    #endif
-
-    module = module_val;
-}
-
-void vector::get_module(double& module_val) const// OK
+const double vector::get_module() const// OK
 {
     #ifdef DEBUG
         std::cout << "VECTOR module getter\n";
     #endif
 
-    module_val = module;
+    return module;
 }
 
 void vector::calc_module() // OK
 {
-    const coords_type x1 = start.get_x();
-    const coords_type y1 = start.get_y();
-    const coords_type z1 = start.get_z();
-
-    const coords_type x2 = end.get_x();
-    const coords_type y2 = end.get_y();
-    const coords_type z2 = end.get_z();
-
-    if(isnan(x1) || isnan(y1) || isnan(z1))
+    if(isnan(i) || isnan(j) || isnan(k))
     {
-        std::cout << "\nModule can't be calculated. Some coords of the START of the vector are NAN value\n";
-    }
-    else if(isnan(x2) || isnan(y2) || isnan(z2))
-    {
-        std::cout << "\nModule can't be calculated. Some coords of the END of the vector are NAN value\n";
+        std::cout << "\nModule can't be calculated. Some components of the vector are NAN value\n";
+        module = NAN;
     }
     else
     {
-        module = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1) + (z2 - z1) * (z2 - z1));
+        module = sqrt(i * i + j * j + k * k);
     }
+}
+
+const coords_type vector::get_i() const // OK
+{
+    return i;
+}
+
+const coords_type vector::get_j() const // OK
+{
+    return j;
+}
+
+const coords_type vector::get_k() const // OK
+{
+    return k;
 }
 
 /*###############################################################################################*/
