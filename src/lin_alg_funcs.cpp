@@ -50,17 +50,17 @@ void point::set_z(const coords_type& z) // OK
     this->z = z;
 }
 
-coords_type point::get_x() // OK
+const coords_type point::get_x() const // OK
 {
     return x;
 }
 
-coords_type point::get_y() // OK
+const coords_type point::get_y() const // OK
 {
     return y;
 }
 
-coords_type point::get_z() // OK
+const coords_type point::get_z() const // OK
 {
     return z;
 }
@@ -92,6 +92,8 @@ vector::vector(const coords_type& x1, const coords_type& y1, const coords_type& 
     set_start(x1, y1, z1);
     set_end(x2, y2, z2);
     set_module(NAN);
+
+    calc_module();
 }
 
 vector::~vector() // OK
@@ -129,12 +131,12 @@ void vector::set_end(const coords_type& x2, const coords_type& y2, const coords_
 
 void vector::print_vector() // OK
 {
-    std::cout << "Vector start x = " + std::to_string(start.get_x()) + " " + " y = "+ std::to_string(start.get_y()) + " " +" z = "+ std::to_string(start.get_z()) << std::endl;
+    std::cout << "\nVector start x = " + std::to_string(start.get_x()) + " " + " y = "+ std::to_string(start.get_y()) + " " +" z = "+ std::to_string(start.get_z()) << std::endl;
     std::cout << "Vector end x = " + std::to_string(end.get_x()) + " " + " y = "+ std::to_string(end.get_y()) + " " +" z = "+ std::to_string(end.get_z()) << std::endl; 
-    std::cout << "Vector module = " + std::to_string(module) << std::endl;
+    std::cout << "Vector module = " + std::to_string(module) << std::endl << std::endl;
 }
 
-void vector::get_start(coords_type& x1, coords_type& y1, coords_type& z1) // OK
+void vector::get_start(coords_type& x1, coords_type& y1, coords_type& z1) const// OK
 {
     #ifdef DEBUG
         std::cout << "VECTOR start getter\n";
@@ -145,7 +147,7 @@ void vector::get_start(coords_type& x1, coords_type& y1, coords_type& z1) // OK
     z1 = start.get_z();
 }
 
-void vector::get_end(coords_type& x2, coords_type& y2, coords_type& z2) // OK
+void vector::get_end(coords_type& x2, coords_type& y2, coords_type& z2) const// OK
 {
     #ifdef DEBUG
         std::cout << "VECTOR end getter\n";
@@ -165,7 +167,7 @@ void vector::set_module(const double& module_val) // OK
     module = module_val;
 }
 
-void vector::get_module(double& module_val) // OK
+void vector::get_module(double& module_val) const// OK
 {
     #ifdef DEBUG
         std::cout << "VECTOR module getter\n";
@@ -176,13 +178,13 @@ void vector::get_module(double& module_val) // OK
 
 void vector::calc_module() // OK
 {
-    coords_type x1 = start.get_x();
-    coords_type y1 = start.get_y();
-    coords_type z1 = start.get_z();
+    const coords_type x1 = start.get_x();
+    const coords_type y1 = start.get_y();
+    const coords_type z1 = start.get_z();
 
-    coords_type x2 = end.get_x();
-    coords_type y2 = end.get_y();
-    coords_type z2 = end.get_z();
+    const coords_type x2 = end.get_x();
+    const coords_type y2 = end.get_y();
+    const coords_type z2 = end.get_z();
 
     if(isnan(x1) || isnan(y1) || isnan(z1))
     {
@@ -197,7 +199,6 @@ void vector::calc_module() // OK
         module = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1) + (z2 - z1) * (z2 - z1));
     }
 }
-
 
 /*###############################################################################################*/
 
