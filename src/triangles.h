@@ -26,13 +26,13 @@ class point
 
         void print_point(); // prints the coords of the point
 
-        void setX(coords_type x);
-        void setY(coords_type y);
-        void setZ(coords_type z);
+        void set_x(coords_type x);
+        void set_y(coords_type y);
+        void set_z(coords_type z);
 
-        coords_type getX();
-        coords_type getY();
-        coords_type getZ();
+        coords_type get_x();
+        coords_type get_y();
+        coords_type get_z();
 
     private:
         coords_type x;
@@ -50,15 +50,23 @@ class vector
         
         void print_vector(); // prints the coords of the start and the end of the point
 
-        void setStart(coords_type x1, coords_type y1, coords_type z1);
-        void setEnd(coords_type x2, coords_type y2, coords_type z2);
+        void set_start(coords_type x1, coords_type y1, coords_type z1);
+        void set_end(coords_type x2, coords_type y2, coords_type z2);
+        void set_module(double& module_val);
 
-        void getStart(coords_type& x1, coords_type& y1, coords_type& z1);
-        void getEnd(coords_type& x2, coords_type& y2, coords_type& z2);
+        void get_start(coords_type& x1, coords_type& y1, coords_type& z1);
+        void get_end(coords_type& x2, coords_type& y2, coords_type& z2);
+        void get_module(double& module_val);
+
+        void calc_module()
+        {
+
+        }
 
     private:
         point start;
         point end;
+        double module;
 };
 
 
