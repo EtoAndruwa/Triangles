@@ -28,7 +28,8 @@ class point // READY
 
         ~point(); // destructor
 
-        void print_point(); // prints the coords of the point
+        void print_point() const; // prints the coords of the point
+        void set_point(const coords_type& x, const coords_type& y, const coords_type& z);
 
         coords_type get_x() const;
         coords_type get_y() const;
@@ -40,14 +41,17 @@ class point // READY
         coords_type z;
 };
 
-class vector // READY
+class vector: public point // READY
 {
+    friend triangle;
+
     public:
+        vector();
         vector(const coords_type& x1, const coords_type& y1, const coords_type& z1, const coords_type& x2, const coords_type& y2, const coords_type& z2); // constructor
 
         ~vector(); //destructor
         
-        void print_vector(); // prints the coords of the start and the end of the point
+        void print_vector() const; // prints the coords of the start and the end of the point
 
         void get_start(coords_type& x1, coords_type& y1, coords_type& z1) const;
         void get_end(coords_type& x2, coords_type& y2, coords_type& z2) const;
@@ -57,22 +61,24 @@ class vector // READY
         coords_type get_k() const;
 
         void calc_module();
+        void set_end(const coords_type& x2, const coords_type& y2, const coords_type& z2);
+        void set_start(const coords_type& x1, const coords_type& y1, const coords_type& z1);
 
-        bool operator == (const vector& other) // OK
+        bool operator == (const vector& other) const// OK
         {
             return (abs(this->start.get_x() - other.start.get_x()) <= EPS) && (abs(this->start.get_y() - other.start.get_y()) <= EPS) &&
                 (abs(this->start.get_z() - other.start.get_z()) <= EPS) && (abs(this->end.get_x() - other.end.get_x()) <= EPS) && 
                     (abs(this->end.get_y() - other.end.get_y()) <= EPS) && (abs(this->end.get_z() - other.end.get_z()) <= EPS);
         }
 
-        bool operator != (const vector& other) // OK
+        bool operator != (const vector& other) const // OK
         {
             return !((abs(this->start.get_x() - other.start.get_x()) <= EPS) && (abs(this->start.get_y() - other.start.get_y()) <= EPS) &&
                 (abs(this->start.get_z() - other.start.get_z()) <= EPS) && (abs(this->end.get_x() - other.end.get_x()) <= EPS) && 
                     (abs(this->end.get_y() - other.end.get_y()) <= EPS) && (abs(this->end.get_z() - other.end.get_z()) <= EPS));
         }
 
-        vector operator ^(const vector& other)
+        vector operator ^(const vector& other) const
         {
             if(isnan(this->get_module()) ||  isnan(other.get_module()))
             {
@@ -99,7 +105,7 @@ class vector // READY
             }
         }
 
-        double operator *(const vector& other) // OK
+        double operator *(const vector& other) const// OK
         {
             if(isnan(this->get_module()) ||  isnan(other.get_module()))
             {
@@ -112,7 +118,7 @@ class vector // READY
             }
         }
 
-        vector operator +(const vector& other) // OK
+        vector operator +(const vector& other) const // OK
         {
             const coords_type i3 = this->get_i() + other.get_i();
             const coords_type j3 = this->get_j() + other.get_j();
@@ -126,7 +132,7 @@ class vector // READY
             return res_vec;
         }
 
-        vector operator -(const vector& other) // OK
+        vector operator -(const vector& other) const// OK
         {
             const coords_type i3 = this->get_i() - other.get_i();
             const coords_type j3 = this->get_j() - other.get_j();
@@ -140,7 +146,7 @@ class vector // READY
             return res_vec;
         }
 
-        vector operator *(const double& multp_val) // OK
+        vector operator *(const double& multp_val) const// OK
         {
             const coords_type i3 = this->get_i() * multp_val;
             const coords_type j3 = this->get_j() * multp_val;
@@ -154,7 +160,7 @@ class vector // READY
             return res_vec;
         }
 
-        vector operator /(const double& multp_val) // OK
+        vector operator /(const double& multp_val) const// OK
         {
             if(abs(multp_val) <= EPS)
             {
@@ -190,10 +196,23 @@ class vector // READY
 class triangle // NOT READY
 {
     public:
+        triangle(const coords_type& x1, const coords_type& y1, const coords_type& z1, const coords_type& x2, const coords_type& y2, const coords_type& z2, 
+            const coords_type& x3, const coords_type& y3, const coords_type& z3);
+        ~triangle();
 
+
+        void calc_area();
+        void print_triangle() const;
+        float get_area() const;
 
     private:
-
+        point A;
+        point B;
+        point C;
+        vector AB;
+        vector BC;
+        vector CA;
+        float area;
 };
 
 // template <class T>

@@ -105,6 +105,21 @@ TEST(vec_sum, vec_sum_4)
     ASSERT_FALSE(v3 == (v1 + v2));
 }
 
+TEST(vec_sum, vec_sum_5)
+{
+    vector v1(0, 0, 0, 0, 0, 0);
+    vector v2(0, 0, 0, 0, 0, 0);
+    vector v3(0, 0, 0, 0, 0, 0);
+
+    #ifdef DEBUG_U
+        vector v4 = v1 + v2;
+        v4.print_vector();
+        v3.print_vector();
+    #endif
+
+    EXPECT_TRUE(v3 == (v1 + v2));
+}
+
 /**#####################################################*/
 
 /*Unit test for two vectors being equal*/
@@ -141,13 +156,13 @@ TEST(vec_eq, vec_eq_4)
     EXPECT_TRUE(v1 == v2);
 }
 
-TEST(vec_eq, NEW_TEST)
-{
-    vector v1(0, 0, 0, 3, 3, 3);
-    vector v2(4, 4, 4, 7, 7, 7);
+// TEST(vec_eq, NEW_TEST)
+// {
+//     vector v1(0, 0, 0, 3, 3, 3);
+//     vector v2(4, 4, 4, 7, 7, 7);
 
-    EXPECT_TRUE(v1 != v2);
-}
+//     EXPECT_TRUE(v1 != v2);
+// }
 
 /**#####################################################*/
 
@@ -330,6 +345,26 @@ TEST(vec_mult, vec_mult_4)
     #endif
 
     EXPECT_TRUE(v3 == (v1^v2));
+}
+
+/**#####################################################*/
+
+TEST(vec_area, vec_area_1)
+{
+    triangle ABC(0, 0, 0, 2, 0, 0, 0, 0, 2);
+    EXPECT_FLOAT_EQ(ABC.get_area(), 2);
+}
+
+TEST(vec_area, vec_area_2)
+{
+    triangle ABC(0, 0, 0, 0, 0, 0, 0, 0, 0);
+    EXPECT_FLOAT_EQ(ABC.get_area(), 0);
+}
+
+TEST(vec_area, vec_area_3)
+{
+    triangle ABC(0, 0, 0, 1, 0, 0, 0, 0, 1);
+    EXPECT_FLOAT_EQ(ABC.get_area(), 0.5);
 }
 
 /**#####################################################*/

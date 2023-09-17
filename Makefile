@@ -13,7 +13,7 @@ TRIAN_OBJ = $(patsubst $(PREF_SRC)%.cpp, $(PREF_OBJ)%.o, $(TRIAN_SRC))
 
 OBJ = $(TRIAN_OBJ)
 
-all : $(TARGET) run
+all : $(TARGET) run_test
 
 $(TARGET) : $(OBJ) 
 	$(CC) $(OBJ) -o $(TARGET).exe -lgtest -lgtest_main -pthread
@@ -26,3 +26,6 @@ clean:
 
 run:
 	$(EXE_FLAG_VALGRIND) ./$(TARGET).exe
+
+run_test:
+	$(EXE_FLAG_VALGRIND) ./$(TARGET).exe -Test
