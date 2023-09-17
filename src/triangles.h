@@ -7,7 +7,6 @@
 #include <time.h>   
 #include <gtest/gtest.h>
 
-// #define DEBUG_U // for unit test comments
 // #define DEBUG // for code comments
 #define EPS 1e-6
 
@@ -61,13 +60,16 @@ class vector // READY
 
         bool operator == (const vector& other) // OK
         {
-            return (abs(this->get_i() - other.get_i()) <= EPS) && (abs(this->get_j() - other.get_j()) <= EPS) && (abs(this->get_k() - other.get_k()) <= EPS);
+            return (abs(this->start.get_x() - other.start.get_x()) <= EPS) && (abs(this->start.get_y() - other.start.get_y()) <= EPS) &&
+                (abs(this->start.get_z() - other.start.get_z()) <= EPS) && (abs(this->end.get_x() - other.end.get_x()) <= EPS) && 
+                    (abs(this->end.get_y() - other.end.get_y()) <= EPS) && (abs(this->end.get_z() - other.end.get_z()) <= EPS);
         }
 
         bool operator != (const vector& other) // OK
         {
-            return !(this->start.x == other.start.x && this->start.y == other.start.y && this->start.z == other.start.z && 
-                this->end.x == other.end.x && this->end.y == other.end.y && this->end.z == other.end.z);
+            return !((abs(this->start.get_x() - other.start.get_x()) <= EPS) && (abs(this->start.get_y() - other.start.get_y()) <= EPS) &&
+                (abs(this->start.get_z() - other.start.get_z()) <= EPS) && (abs(this->end.get_x() - other.end.get_x()) <= EPS) && 
+                    (abs(this->end.get_y() - other.end.get_y()) <= EPS) && (abs(this->end.get_z() - other.end.get_z()) <= EPS));
         }
 
         vector operator ^(const vector& other)
