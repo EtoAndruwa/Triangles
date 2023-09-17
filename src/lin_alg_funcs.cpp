@@ -102,6 +102,9 @@ void vector::print_vector() // OK
 {
     std::cout << "\nVector start x = " + std::to_string(start.get_x()) + " " + " y = "+ std::to_string(start.get_y()) + " " +" z = "+ std::to_string(start.get_z()) << std::endl;
     std::cout << "Vector end x = " + std::to_string(end.get_x()) + " " + " y = "+ std::to_string(end.get_y()) + " " +" z = "+ std::to_string(end.get_z()) << std::endl; 
+    std::cout << "i = " + std::to_string(i) << std::endl;
+    std::cout << "j = " + std::to_string(j) << std::endl;
+    std::cout << "k = " + std::to_string(k) << std::endl;
     std::cout << "Vector module = " + std::to_string(module) << std::endl << std::endl;
 }
 
@@ -165,14 +168,6 @@ coords_type vector::get_k() const // OK
 }
 
 /*###############################################################################################*/
-
-// vector& calc_vec_mult(vector& v1, vector& v2)
-// {
-
-
-//     return vector v3(1, 2, 3);
-// }
-
 
 
 // template <class T>

@@ -7,7 +7,8 @@
 #include <time.h>   
 #include <gtest/gtest.h>
 
-// #define DEBUG
+// #define DEBUG_U // for unit test comments
+// #define DEBUG // for code comments
 #define EPS 1e-7
 
 typedef float coords_type;  // types of coords (int/float)
