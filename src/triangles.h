@@ -226,5 +226,7 @@ class triangle // NOT READY
 
 bool check_top_inter(const point& point, const triangle triangl);
 bool triangle_inter(const triangle& triangle1, const triangle& triangle2);
+bool check_vec_collinear(const vector& vector1, const vector& vector2);
+bool check_vec_perpend(const vector& vector1, const vector& vector2);
 
 #endif

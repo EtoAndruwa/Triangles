@@ -336,3 +336,14 @@ bool check_top_inter(const point& point, const triangle triangl)
     return point == triangl.A ||  point == triangl.B || point == triangl.C;
 }
 
+bool check_vec_collinear(const vector& vector1, const vector& vector2)
+{
+    return (vector1 ^ vector2).get_module() <= EPS? true: false;
+}
+
+bool check_vec_perpend(const vector& vector1, const vector& vector2)
+{
+    return (vector1 * vector2) <= EPS? true: false;
+}
+
+/*###############################################################################################*/
