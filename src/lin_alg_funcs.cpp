@@ -35,17 +35,17 @@ point::~point() // OK
     z = NAN;
 }
 
-const coords_type point::get_x() const // OK
+coords_type point::get_x() const // OK
 {
     return x;
 }
 
-const coords_type point::get_y() const // OK
+coords_type point::get_y() const // OK
 {
     return y;
 }
 
-const coords_type point::get_z() const // OK
+coords_type point::get_z() const // OK
 {
     return z;
 }
@@ -127,7 +127,7 @@ void vector::get_end(coords_type& x2, coords_type& y2, coords_type& z2) const// 
     z2 = end.get_z();
 }
 
-const double vector::get_module() const// OK
+double vector::get_module() const// OK
 {
     #ifdef DEBUG
         std::cout << "VECTOR module getter\n";
@@ -149,17 +149,17 @@ void vector::calc_module() // OK
     }
 }
 
-const coords_type vector::get_i() const // OK
+coords_type vector::get_i() const // OK
 {
     return i;
 }
 
-const coords_type vector::get_j() const // OK
+coords_type vector::get_j() const // OK
 {
     return j;
 }
 
-const coords_type vector::get_k() const // OK
+coords_type vector::get_k() const // OK
 {
     return k;
 }

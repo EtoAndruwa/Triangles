@@ -4,7 +4,8 @@
 #include <iostream>
 #include <math.h>
 #include <string>
-#include <time.h>
+#include <time.h>   
+#include <gtest/gtest.h>
 
 // #define DEBUG
 #define EPS 1e-7
@@ -29,9 +30,9 @@ class point
 
         void print_point(); // prints the coords of the point
 
-        const coords_type get_x() const;
-        const coords_type get_y() const;
-        const coords_type get_z() const;
+        coords_type get_x() const;
+        coords_type get_y() const;
+        coords_type get_z() const;
 
     private:
         coords_type x;
@@ -48,19 +49,12 @@ class vector
         
         void print_vector(); // prints the coords of the start and the end of the point
 
-        // void set_start(const coords_type& x1, const coords_type& y1, const coords_type& z1);
-        // void set_end(const coords_type& x2, const coords_type& y2, const coords_type& z2);
-        // void set_module(const double& module_val);
-        // void set_i(const coords_type& i_val);
-        // void set_j(const coords_type& j_val);
-        // void set_k(const coords_type& k_val);
-
         void get_start(coords_type& x1, coords_type& y1, coords_type& z1) const;
         void get_end(coords_type& x2, coords_type& y2, coords_type& z2) const;
-        const double get_module() const;
-        const coords_type get_i() const;
-        const coords_type get_j() const;
-        const coords_type get_k() const;
+        double get_module() const;
+        coords_type get_i() const;
+        coords_type get_j() const;
+        coords_type get_k() const;
 
         void calc_module();
 
@@ -103,7 +97,7 @@ class vector
             }
         }
 
-        const double operator *(const vector& other) // OK
+        double operator *(const vector& other) // OK
         {
             if(isnan(this->get_module()) ||  isnan(other.get_module()))
             {
@@ -112,7 +106,7 @@ class vector
             }
             else
             {   
-                return this->get_i() * other.get_i() + this->get_j() * other.get_j() + this->get_k() * other.get_k();
+                return (this->get_i() * other.get_i() + this->get_j() * other.get_j() + this->get_k() * other.get_k());
             }
         }
 
