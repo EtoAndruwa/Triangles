@@ -9,7 +9,7 @@
 
 // #define DEBUG_U // for unit test comments
 // #define DEBUG // for code comments
-#define EPS 1e-7
+#define EPS 1e-6
 
 typedef float coords_type;  // types of coords (int/float)
 
@@ -18,7 +18,7 @@ class point;
 class vector;
 class triangle;
 
-class point
+class point // READY
 {
     friend vector;
     friend triangle;
@@ -41,7 +41,7 @@ class point
         coords_type z;
 };
 
-class vector
+class vector // READY
 {
     public:
         vector(const coords_type& x1, const coords_type& y1, const coords_type& z1, const coords_type& x2, const coords_type& y2, const coords_type& z2); // constructor
@@ -61,8 +61,7 @@ class vector
 
         bool operator == (const vector& other) // OK
         {
-            return this->start.x == other.start.x && this->start.y == other.start.y && this->start.z == other.start.z && 
-                this->end.x == other.end.x && this->end.y == other.end.y && this->end.z == other.end.z;
+            return (abs(this->get_i() - other.get_i()) <= EPS) && (abs(this->get_j() - other.get_j()) <= EPS) && (abs(this->get_k() - other.get_k()) <= EPS);
         }
 
         bool operator != (const vector& other) // OK
@@ -186,8 +185,7 @@ class vector
         double module;
 };
 
-
-class triangle
+class triangle // NOT READY
 {
     public:
 
