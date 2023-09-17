@@ -35,6 +35,12 @@ class point // READY
         coords_type get_y() const;
         coords_type get_z() const;
 
+        bool operator == (const point& other) const// OK
+        {
+            return (abs(this->get_x() - other.get_x()) <= EPS) && (abs(this->get_y() - other.get_y()) <= EPS) 
+                && (abs(this->get_z() - other.get_z()) <= EPS);
+        }
+
     private:
         coords_type x;
         coords_type y;
@@ -195,6 +201,9 @@ class vector: public point // READY
 
 class triangle // NOT READY
 {
+    friend bool check_top_inter(const point& point, const triangle triangl);
+    friend bool simpl_triangle_inter(const triangle& triangle1, const triangle& triangle2);
+
     public:
         triangle(const coords_type& x1, const coords_type& y1, const coords_type& z1, const coords_type& x2, const coords_type& y2, const coords_type& z2, 
             const coords_type& x3, const coords_type& y3, const coords_type& z3);
@@ -215,7 +224,7 @@ class triangle // NOT READY
         float area;
 };
 
-// template <class T>
-// void run_time(T func_ptr);
+bool check_top_inter(const point& point, const triangle triangl);
+bool triangle_inter(const triangle& triangle1, const triangle& triangle2);
 
 #endif

@@ -303,3 +303,36 @@ float triangle::get_area() const
     return area;
 }
 
+/*###############################################################################################*/
+
+bool simpl_triangle_inter(const triangle& triangle1, const triangle& triangle2)
+{
+    if(check_top_inter(triangle1.A, triangle2))
+    {
+        printf("Intersection in peek A\n");
+        // triangle1.print_triangle();
+        // triangle2.print_triangle();
+        return true;
+    }
+    else if(check_top_inter(triangle1.B, triangle2))
+    {
+        printf("Intersection in peek B\n");
+        // triangle1.print_triangle();
+        // triangle2.print_triangle();
+        return true;
+    }
+    else if(check_top_inter(triangle1.C, triangle2))
+    {
+        printf("Intersection in peek B\n");
+        // triangle1.print_triangle();
+        // triangle2.print_triangle();
+        return true;
+    }
+    return false;
+}
+
+bool check_top_inter(const point& point, const triangle triangl)
+{
+    return point == triangl.A ||  point == triangl.B || point == triangl.C;
+}
+

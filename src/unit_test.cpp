@@ -7,7 +7,7 @@
 
 /**#####################################################*/
 
-/*Unit test for scalar multiplication of two vectors*/
+/*Unit tests for scalar multiplication of two vectors*/
 
 TEST(vec_scal_mutp, scal_mult_1)
 {
@@ -43,7 +43,7 @@ TEST(vec_scal_mutp, scal_mult_4)
 
 /**#####################################################*/
 
-/*Unit test for sum of two vectors*/
+/*Unit tests for sum of two vectors*/
 
 TEST(vec_sum, vec_sum_1)
 {
@@ -122,7 +122,7 @@ TEST(vec_sum, vec_sum_5)
 
 /**#####################################################*/
 
-/*Unit test for two vectors being equal*/
+/*Unit tests for two vectors being equal*/
 
 TEST(vec_eq, vec_eq_1)
 {
@@ -156,17 +156,9 @@ TEST(vec_eq, vec_eq_4)
     EXPECT_TRUE(v1 == v2);
 }
 
-// TEST(vec_eq, NEW_TEST)
-// {
-//     vector v1(0, 0, 0, 3, 3, 3);
-//     vector v2(4, 4, 4, 7, 7, 7);
-
-//     EXPECT_TRUE(v1 != v2);
-// }
-
 /**#####################################################*/
 
-/*Unit test of multiplication vector by scalar*/
+/*Unit tests of multiplication vector by scalar*/
 
 TEST(vec_mult_by_scal, mult_by_scal_1)
 {
@@ -221,7 +213,7 @@ TEST(vec_mult_by_scal, mult_by_scal_4)
 
 /**#####################################################*/
 
-/*Unit test for sub of two vectors*/
+/*Unit tests for sub of two vectors*/
 
 TEST(vec_sub, vec_sub_1)
 {
@@ -285,7 +277,7 @@ TEST(vec_sub, vec_sub_4)
 
 /**#####################################################*/
 
-/*Unit test for vector multiplication of two vectors*/
+/*Unit tests for vector multiplication of two vectors*/
 
 TEST(vec_mult, vec_mult_1)
 {
@@ -348,6 +340,8 @@ TEST(vec_mult, vec_mult_4)
 }
 
 /**#####################################################*/
+
+/*Unit tests for the triangle's area calcultaion*/
 
 TEST(vec_area, vec_area_1)
 {

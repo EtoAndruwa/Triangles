@@ -2,8 +2,10 @@
 
 int main(int argc, char** argv)
 {
-    triangle ABC(0,0,0,2,0,0,0,0,2);
-    ABC.print_triangle();
+    triangle triangle1(0,0,0,2,0,0,0,0,2);
+    triangle triangle2(0,0,1,2,0,0,2,0,2);
+    simpl_triangle_inter(triangle1, triangle2);
+
 
     if((argc >= 2) && !strcmp("-Test", argv[1]))
     {
