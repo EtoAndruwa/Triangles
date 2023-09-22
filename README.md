@@ -29,10 +29,15 @@ Just clone this repository into your computer using command `git clone https://g
 4. Other functionality
     * Check vectors for being perpendicular
     * Check vectors for being parallel
+    * Check for intersection of two vectors laying on the one line
+    * Check for vectors being pointing to the one part of 3D area
+    * Check for vectors laying on the one line
+    * Check for values sign
+    * Check for value being part of interval
+    * Check for three values being equal to each other
 
-### Updates
-1. 22.09.2023
-    * Working on..
+### Updates history
+1. 22.09.2023 
 
 ### Known issues
 * No issues found yet.
