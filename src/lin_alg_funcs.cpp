@@ -359,7 +359,7 @@ bool check_vec_perpend(const vector& v1, const vector& v2) // OK
 //     }
 // }
 
-bool check_on_one_line(const vector& v1, const vector& v2)
+bool check_on_one_line(const vector& v1, const vector& v2) // OK
 {
     return check_three_eq(v1.get_i() / v2.get_i(), v1.get_j() / v2.get_j(), v1.get_k() / v2.get_k());
 }
@@ -368,6 +368,22 @@ bool check_point_one_direct(const vector& v1, const vector& v2) // IDEAL CHECK
 {
     return check_is_sign(v1.get_i()) * check_is_sign(v2.get_i()) != IS_NEGATIVE && check_is_sign(v1.get_j()) * check_is_sign(v2.get_j()) != IS_NEGATIVE 
         && check_is_sign(v1.get_k()) * check_is_sign(v2.get_k()) != IS_NEGATIVE ? true: false;
+}
+
+bool one_line_inter(const vector& v1, const vector& v2) // IN DEV
+{
+    /**MUST BE CHANGED*/
+
+    if(check_on_one_line(v1, v2))
+    {
+        if(check_val_in_interval(v1.start.get_x(), v2.start.get_x(), v1.end.get_x()) || check_val_in_interval(v1.start.get_x(), v2.end.get_x(), v1.end.get_x()) 
+            || check_val_in_interval(v2.start.get_x(), v1.end.get_x(), v2.end.get_x()))
+        {
+            return true;
+        }
+        return false;
+    }
+    return false;
 }
 
 

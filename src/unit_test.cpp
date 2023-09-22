@@ -512,4 +512,62 @@ TEST(check_on_one_line, test_3)
 
 /**#####################################################*/
 
+TEST(one_line_inter, tets_1)
+{
+    vector v1(0, 0, 0, 4, 4, 4);
+    vector v2(1, 1, 1, 3, 3, 3);
+
+    EXPECT_TRUE(one_line_inter(v1, v2));
+}
+
+TEST(one_line_inter, tets_2)
+{
+    vector v1(0, 0, 0, 2, 2, 2);
+    vector v2(1, 1, 1, 3, 3, 3);
+
+    EXPECT_TRUE(one_line_inter(v1, v2));
+}
+
+TEST(one_line_inter, tets_3)
+{
+    vector v1(0, 0, 0, 1, 1, 1);
+    vector v2(0, 0, 0, -2, -2, -2);
+
+    EXPECT_TRUE(one_line_inter(v1, v2));
+}
+
+TEST(one_line_inter, tets_4)
+{
+    vector v1(0, 0, 0, 2, 2, 2);
+    vector v2(2, 2, 2, 3, 3, 3);
+
+    EXPECT_TRUE(one_line_inter(v1, v2));
+}
+
+TEST(one_line_inter, tets_5)
+{
+    vector v1(0, 0, 0, 5, 5, 5);
+    vector v2(-2, -2, -2, 3, 3, 3);
+
+    EXPECT_TRUE(one_line_inter(v1, v2));
+}
+
+TEST(one_line_inter, tets_6)
+{
+    vector v1(0, 0, 0, 5, 5, 5);
+    vector v2(-2, -2, -2, -1, -1, -1);
+
+    EXPECT_FALSE(one_line_inter(v1, v2));
+}
+
+TEST(one_line_inter, tets_7)
+{
+    vector v1(0, 0, 0, 5, 5, 5);
+    vector v2(6, 6, 6, 7, 7, 7);
+
+    EXPECT_FALSE(one_line_inter(v1, v2));
+}
+
+/**#####################################################*/
+
 #endif

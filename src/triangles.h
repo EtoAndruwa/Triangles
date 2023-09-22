@@ -57,6 +57,7 @@ class point // READY
 class vector: public point // READY
 {
     friend triangle;
+    friend bool one_line_inter(const vector& v1, const vector& v2);
 
     public:
         vector();
