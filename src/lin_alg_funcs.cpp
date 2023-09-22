@@ -307,43 +307,63 @@ float triangle::get_area() const
 
 bool simpl_triangle_inter(const triangle& triangle1, const triangle& triangle2)
 {
-    if(check_top_inter(triangle1.A, triangle2))
-    {
-        printf("Intersection in peek A\n");
-        // triangle1.print_triangle();
-        // triangle2.print_triangle();
-        return true;
-    }
-    else if(check_top_inter(triangle1.B, triangle2))
-    {
-        printf("Intersection in peek B\n");
-        // triangle1.print_triangle();
-        // triangle2.print_triangle();
-        return true;
-    }
-    else if(check_top_inter(triangle1.C, triangle2))
-    {
-        printf("Intersection in peek B\n");
-        // triangle1.print_triangle();
-        // triangle2.print_triangle();
-        return true;
-    }
-    return false;
+    return check_top_inter(triangle1.A, triangle2) || check_top_inter(triangle1.B, triangle2) || check_top_inter(triangle1.C, triangle2);
 }
 
 bool check_top_inter(const point& point, const triangle triangl)
 {
-    return point == triangl.A ||  point == triangl.B || point == triangl.C;
+    return point == triangl.A || point == triangl.B || point == triangl.C;
 }
 
-bool check_vec_collinear(const vector& vector1, const vector& vector2)
+bool check_vec_collinear(const vector& v1, const vector& v2)
 {
-    return (vector1 ^ vector2).get_module() <= EPS? true: false;
+    return (v1 ^ v2).get_module() <= EPS? true: false;
 }
 
-bool check_vec_perpend(const vector& vector1, const vector& vector2)
+bool check_vec_perpend(const vector& v1, const vector& v2)
 {
-    return (vector1 * vector2) <= EPS? true: false;
+    return (v1 * v2) <= EPS? true: false;
 }
+
+bool check_vec_inter_line(const vector& v1, const vector& v2)
+{
+    if(check_vec_collinear(v1, v2))
+    {
+        coords_type x1_v2 = 0;
+        coords_type y1_v2 = 0;
+        coords_type z1_v2 = 0;
+
+        coords_type x1_v1 = 0;
+        coords_type y1_v1 = 0;
+        coords_type z1_v1 = 0;
+
+        v2.get_start(x1_v2, y1_v2, z1_v2);
+        v1.get_start(x1_v1, y1_v1, z1_v1);
+
+        const float t_param = (x1_v2 - x1_v1) / v1.get_i();
+
+        if(t_param)
+        {
+
+
+
+        }
+    }
+}
+
+bool check_on_one_line(const vector& v1, const vector& v2)
+{
+    const float t_i = v1.get_i()/v2.get_i();
+    const float t_j = v1.get_j()/v2.get_j();
+    const float t_k = v1.get_k()/v2.get_k();
+
+    return t_i == t_j && t_j == t_k ? true: false;
+}
+
+bool check_one_direct(const vector& v1, const vector& v2)
+{
+
+}
+
 
 /*###############################################################################################*/

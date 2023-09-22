@@ -26,13 +26,13 @@ Just clone this repository into your computer using command `git clone https://g
     * Triangle creation
     * Area calculation
 
-4. Other functions
+4. Other functionality
     * Check vectors for being perpendicular
     * Check vectors for being parallel
 
 ### Updates
-    * 22.09.2023
-    ** Working...
+1. 22.09.2023
+    * Working on..
 
 ### Known issues
 * No issues found yet.

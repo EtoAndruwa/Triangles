@@ -371,4 +371,77 @@ TEST(vec_area, vec_area_3)
 
 /**#####################################################*/
 
+//UNIT TEST FOR check_on_one_line
+
+// TEST(check_on_one_line, test_1)
+// {
+//     vector v1(0, 0, 0, 1, 0, 0);
+//     vector v2(0, 0, 0, 2, 0, 0);
+
+//     EXPECT_TRUE(check_on_one_line(v1, v2));
+// }
+
+/**#####################################################*/
+
+TEST(check_is_zero, test_1)
+{
+    EXPECT_TRUE(check_is_zero(0));
+}
+
+TEST(check_is_zero, test_2)
+{
+    EXPECT_TRUE(check_is_zero(EPS));
+}
+
+TEST(check_is_zero, test_3)
+{
+    EXPECT_TRUE(check_is_zero(0.0));
+}
+
+/**#####################################################*/
+
+TEST(check_val_in_interval, test_1)
+{
+    EXPECT_TRUE(check_val_in_interval(1, 2, 3));
+}
+
+TEST(check_val_in_interval, test_2)
+{
+    EXPECT_TRUE(check_val_in_interval(-1, 0, 10));
+}
+
+TEST(check_val_in_interval, test_3)
+{
+    EXPECT_TRUE(check_val_in_interval(-2.0, 0.0, 3.0));
+}
+
+TEST(check_val_in_interval, test_4)
+{
+    EXPECT_FALSE(check_val_in_interval(-2, -4, 3));
+}
+
+/**#####################################################*/
+
+TEST(check_tree_eq, test_1)
+{
+    EXPECT_TRUE(check_tree_eq(0, 0, 0));
+}
+
+TEST(check_tree_eq, test_2)
+{
+    EXPECT_FALSE(check_tree_eq(-1, 0, 0));
+}
+
+TEST(check_tree_eq, test_3)
+{
+    EXPECT_FALSE(check_tree_eq(-2, -2, 3));
+}
+
+TEST(check_tree_eq, test_4)
+{
+    EXPECT_TRUE(check_tree_eq(-2.0, -2.0, -2.0));
+}
+
+/**#####################################################*/
+
 #endif

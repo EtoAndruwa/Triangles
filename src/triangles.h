@@ -228,5 +228,26 @@ bool check_top_inter(const point& point, const triangle triangl);
 bool triangle_inter(const triangle& triangle1, const triangle& triangle2);
 bool check_vec_collinear(const vector& vector1, const vector& vector2);
 bool check_vec_perpend(const vector& vector1, const vector& vector2);
+bool check_on_one_line(const vector& v1, const vector& v2);
+
+
+template <typename T>
+bool check_is_zero(const T value)
+{
+    return (abs(value) <= EPS);
+}
+
+template <typename T>
+bool check_val_in_interval(const T& a, const T& checked_val, const T& b)
+{
+    return (check_is_zero(checked_val - a)) || check_is_zero(b - checked_val) || 
+        ((checked_val - a) >= EPS && (b - checked_val) >= EPS)? true: false;
+}
+
+template <typename T>
+bool check_tree_eq(const T& a, const T& checked_val, const T& b)
+{
+    return abs(checked_val - a) <= EPS && abs(b - checked_val) <= EPS? true: false;
+}
 
 #endif
