@@ -13,6 +13,13 @@
 typedef float coords_type;  // types of coords (int/float)
 
 
+enum return_codes
+{
+    IS_ZERO = 0,
+    IS_POSITIVE = 1,
+    IS_NEGATIVE = 2,
+};
+
 class point;
 class vector;
 class triangle;
@@ -37,8 +44,8 @@ class point // READY
 
         bool operator == (const point& other) const// OK
         {
-            return (abs(this->get_x() - other.get_x()) <= EPS) && (abs(this->get_y() - other.get_y()) <= EPS) 
-                && (abs(this->get_z() - other.get_z()) <= EPS);
+            return (fabs(this->get_x() - other.get_x()) <= EPS) && (fabs(this->get_y() - other.get_y()) <= EPS) 
+                && (fabs(this->get_z() - other.get_z()) <= EPS);
         }
 
     private:
@@ -72,16 +79,16 @@ class vector: public point // READY
 
         bool operator == (const vector& other) const// OK
         {
-            return (abs(this->start.get_x() - other.start.get_x()) <= EPS) && (abs(this->start.get_y() - other.start.get_y()) <= EPS) &&
-                (abs(this->start.get_z() - other.start.get_z()) <= EPS) && (abs(this->end.get_x() - other.end.get_x()) <= EPS) && 
-                    (abs(this->end.get_y() - other.end.get_y()) <= EPS) && (abs(this->end.get_z() - other.end.get_z()) <= EPS);
+            return (fabs(this->start.get_x() - other.start.get_x()) <= EPS) && (fabs(this->start.get_y() - other.start.get_y()) <= EPS) &&
+                (fabs(this->start.get_z() - other.start.get_z()) <= EPS) && (fabs(this->end.get_x() - other.end.get_x()) <= EPS) && 
+                    (fabs(this->end.get_y() - other.end.get_y()) <= EPS) && (fabs(this->end.get_z() - other.end.get_z()) <= EPS);
         }
 
         bool operator != (const vector& other) const // OK
         {
-            return !((abs(this->start.get_x() - other.start.get_x()) <= EPS) && (abs(this->start.get_y() - other.start.get_y()) <= EPS) &&
-                (abs(this->start.get_z() - other.start.get_z()) <= EPS) && (abs(this->end.get_x() - other.end.get_x()) <= EPS) && 
-                    (abs(this->end.get_y() - other.end.get_y()) <= EPS) && (abs(this->end.get_z() - other.end.get_z()) <= EPS));
+            return !((fabs(this->start.get_x() - other.start.get_x()) <= EPS) && (fabs(this->start.get_y() - other.start.get_y()) <= EPS) &&
+                (fabs(this->start.get_z() - other.start.get_z()) <= EPS) && (fabs(this->end.get_x() - other.end.get_x()) <= EPS) && 
+                    (fabs(this->end.get_y() - other.end.get_y()) <= EPS) && (fabs(this->end.get_z() - other.end.get_z()) <= EPS));
         }
 
         vector operator ^(const vector& other) const
@@ -168,7 +175,7 @@ class vector: public point // READY
 
         vector operator /(const double& multp_val) const// OK
         {
-            if(abs(multp_val) <= EPS)
+            if(fabs(multp_val) <= EPS)
             {
                 printf("Error: cannot div to zero\n");
 
@@ -229,25 +236,27 @@ bool triangle_inter(const triangle& triangle1, const triangle& triangle2);
 bool check_vec_collinear(const vector& vector1, const vector& vector2);
 bool check_vec_perpend(const vector& vector1, const vector& vector2);
 bool check_on_one_line(const vector& v1, const vector& v2);
+bool check_point_one_direct(const vector& v1, const vector& v2);
 
 
 template <typename T>
-bool check_is_zero(const T value)
+int check_is_sign(const T& value) // OK
 {
-    return (abs(value) <= EPS);
+    return (fabs(value - fabs(value)) < EPS) && (fabs(value) > EPS)? IS_POSITIVE: 
+        fabs(value) <= EPS? IS_ZERO: IS_NEGATIVE;
 }
 
 template <typename T>
-bool check_val_in_interval(const T& a, const T& checked_val, const T& b)
+bool check_val_in_interval(const T& a, const T& checked_val, const T& b) // OK
 {
-    return (check_is_zero(checked_val - a)) || check_is_zero(b - checked_val) || 
+    return (check_is_sign(checked_val - a) == IS_ZERO) || check_is_sign(b - checked_val) == IS_ZERO || 
         ((checked_val - a) >= EPS && (b - checked_val) >= EPS)? true: false;
 }
 
 template <typename T>
-bool check_tree_eq(const T& a, const T& checked_val, const T& b)
+bool check_three_eq(const T& a, const T& checked_val, const T& b) // OK
 {
-    return abs(checked_val - a) <= EPS && abs(b - checked_val) <= EPS? true: false;
+    return fabs(checked_val - a) <= EPS && fabs(b - checked_val) <= EPS? true: false;
 }
 
 #endif

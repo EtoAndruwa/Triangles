@@ -72,7 +72,7 @@ void point::print_point() const // OK
 
 /*###############################################################################################*/
 
-vector::vector(const coords_type& x1, const coords_type& y1, const coords_type& z1, const coords_type& x2, const coords_type& y2, const coords_type& z2)
+vector::vector(const coords_type& x1, const coords_type& y1, const coords_type& z1, const coords_type& x2, const coords_type& y2, const coords_type& z2) // IN DEV
 {
     #ifdef DEBUG
         std::cout << "VECTOR constructor\n";
@@ -83,6 +83,14 @@ vector::vector(const coords_type& x1, const coords_type& y1, const coords_type& 
 
     start.set_point(x1, y1, z1);
     end.set_point(x2, y2, z2);
+
+
+    /**MUST BE CHANGED*/
+    if(start == end)
+    {
+        printf("Zero vector cannot be created\n");
+        vector::~vector();
+    }
 
     i = x2 - x1;
     j = y2 - y1;
@@ -315,54 +323,51 @@ bool check_top_inter(const point& point, const triangle triangl)
     return point == triangl.A || point == triangl.B || point == triangl.C;
 }
 
-bool check_vec_collinear(const vector& v1, const vector& v2)
+bool check_vec_collinear(const vector& v1, const vector& v2) // OK
 {
     return (v1 ^ v2).get_module() <= EPS? true: false;
 }
 
-bool check_vec_perpend(const vector& v1, const vector& v2)
+bool check_vec_perpend(const vector& v1, const vector& v2) // OK
 {
     return (v1 * v2) <= EPS? true: false;
 }
 
-bool check_vec_inter_line(const vector& v1, const vector& v2)
-{
-    if(check_vec_collinear(v1, v2))
-    {
-        coords_type x1_v2 = 0;
-        coords_type y1_v2 = 0;
-        coords_type z1_v2 = 0;
+// bool check_vec_inter_line(const vector& v1, const vector& v2)
+// {
+//     if(check_vec_collinear(v1, v2))
+//     {
+//         coords_type x1_v2 = 0;
+//         coords_type y1_v2 = 0;
+//         coords_type z1_v2 = 0;
 
-        coords_type x1_v1 = 0;
-        coords_type y1_v1 = 0;
-        coords_type z1_v1 = 0;
+//         coords_type x1_v1 = 0;
+//         coords_type y1_v1 = 0;
+//         coords_type z1_v1 = 0;
 
-        v2.get_start(x1_v2, y1_v2, z1_v2);
-        v1.get_start(x1_v1, y1_v1, z1_v1);
+//         v2.get_start(x1_v2, y1_v2, z1_v2);
+//         v1.get_start(x1_v1, y1_v1, z1_v1);
 
-        const float t_param = (x1_v2 - x1_v1) / v1.get_i();
+//         const float t_param = (x1_v2 - x1_v1) / v1.get_i();
 
-        if(t_param)
-        {
+//         if(t_param)
+//         {
 
 
 
-        }
-    }
-}
+//         }
+//     }
+// }
 
 bool check_on_one_line(const vector& v1, const vector& v2)
 {
-    const float t_i = v1.get_i()/v2.get_i();
-    const float t_j = v1.get_j()/v2.get_j();
-    const float t_k = v1.get_k()/v2.get_k();
-
-    return t_i == t_j && t_j == t_k ? true: false;
+    return check_three_eq(v1.get_i() / v2.get_i(), v1.get_j() / v2.get_j(), v1.get_k() / v2.get_k());
 }
 
-bool check_one_direct(const vector& v1, const vector& v2)
+bool check_point_one_direct(const vector& v1, const vector& v2) // IDEAL CHECK
 {
-
+    return check_is_sign(v1.get_i()) * check_is_sign(v2.get_i()) != IS_NEGATIVE && check_is_sign(v1.get_j()) * check_is_sign(v2.get_j()) != IS_NEGATIVE 
+        && check_is_sign(v1.get_k()) * check_is_sign(v2.get_k()) != IS_NEGATIVE ? true: false;
 }
 
 
