@@ -37,10 +37,10 @@ Just clone this repository into your computer using command `git clone https://g
     * Check for three values being equal to each other
 
 ### Updates history
-1. 16.09.2023
-2. 17.09.2023
-3. 18.09.2023
-4. 22.09.2023
+* 16.09.2023
+* 17.09.2023
+* 18.09.2023
+* 22.09.2023
 
 ### Known issues
 * No issues found yet.
