@@ -12,19 +12,27 @@ Just clone this repository into your computer using command `git clone https://g
     * If you want to run the program with unit test use `make run_test` command
 
 ### Currently available functionality
-1. Point
+1. Point methods
     * Point creation
-2. Vector
+2. Vector methods
     * Vector creation
-    * Vector sum of two vector
     * Multiplication vector by constant
     * Addition of two vectors
     * Substraction of two vectors
     * Dot multiplication of two vectors
     * Cross multiplication of two vectors
-3. Triangle 
+    * Module calculation of vector
+3. Triangle methods
     * Triangle creation
     * Area calculation
+
+4. Other functions
+    * Check vectors for being perpendicular
+    * Check vectors for being parallel
+
+### Updates
+    * 22.09.2023
+    ** Working...
 
 ### Known issues
 * No issues found yet.
